@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>士兵编号</th>
+            <th>士兵姓名</th>
+            <th>士兵武器</th>
+            <th>信息删除</th>
+            <th>信息编辑</th>
+        </tr>
+        <tr th:each="item: ${soldierList}">
+            <td th:text="${item.soldierId}"></td>
+            <td th:text="${item.soldierName}"></td>
+            <td th:text="${item.soldierWeapon}"></td>
+            <td><a th:href="@{soldier(method='deleteSoldierById', id=${item.soldierId})}">删除</a></td>
+            <td><a th:href="@{soldier(method='updateSoldierById', id=${item.soldierId})}">更新</a></td>
+        </tr>
+    </table>
+    <form action="/RooKie/soldier?method=addSoldiers" method="post">
+        士兵姓名：<input type="text" name="username"><br>
+        士兵武器：<input type="text" name="username1"><br>
+        <input type="submit" value="添加">
+    </form>
+</body>
+</html>
